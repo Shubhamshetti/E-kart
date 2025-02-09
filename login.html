@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+        <div class="row">
+
+            <div class="col-md-4 mt-4 mx-auto shadow-lg p-3 mb-5 bg-body-sbtl rounded" style="border: 1px solid red;">
+
+                <h2 style="text-align: center; " > Login  Here</h2>
+
+                <form method="POST" >
+                  {% if error_msg %}
+                  <div class="alert alert-danger">
+                    {{error_msg}}
+                  </div>
+                  {% endif %}
+                  {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="username" class="form-label">Username</label>
+                      <input type="text" class="form-control" name="uname" placeholder="Enter Username" required>
+                     
+                    </div>
+                    <div class="mb-3">
+                      <label for="Password" class="form-label">Password</label>
+                      <input type="password" class="form-control" placeholder="Enter password" name="upass">
+                    </div>
+         
+                    <button type="submit" class="btn btn-success">Login </button>
+                    <a href="/register" >Not Registered? </a>
+
+         
+                   
+                  </form>
+            </div>
+        </div>
+{% endblock  %}

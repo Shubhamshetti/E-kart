@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="row ">
+  <div class="col-md-3  mb-4 p-3 " style ="background-color:rgb(184, 214, 246);">
+    <h4> Filter by Category </h4> <hr>
+
+    <a href="/" style="text-decoration: none;">All</a> <br>
+    <a href="/filterbycategory/3" style="text-decoration: none;">Cloths</a> <br>
+    <a href="/filterbycategory/1" style="text-decoration: none;">Shoes</a> <br> 
+    <a href="/filterbycategory/2" style="text-decoration: none;">Mobile</a> <br>
+    <a href="/filterbycategory/4" style="text-decoration: none;">Watch</a> <br> <br>
+
+    <h4>Sort by price </h4><hr>
+
+    <a href="/sortbyprice/0" style="text-decoration: none;">High price to low price </a> <br>
+    <a href="/sortbyprice/1" style="text-decoration: none;">Low price to high price</a> <br> <br>
+
+    <h4>Filter by Price </h4><hr>
+    <form method="get" action="/filterbyprice/">
+      <div class="mb-3">
+        <label for="number" class="form-label" >Min </label>
+        <input type="number" class="form-control"  name="min" id="number"
+          aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="number" class="form-label"  >Max </label>
+        <input type="number" class="form-control" name="max" id="number"
+          aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="col-md-9 col-md-3 mt-4 p-3"><h4>Products</h4>
+
+
+    <div class="row">
+      {% for product in products %}
+      <div class="card m-4" style="width: 20rem;">
+        <img src="{{product.pimage.url}}" class="card-img-top mt-2" alt="...">
+        <div class="card-body">
+          {% if product.category == 1 %}
+          <p class=""text">Shoes</p>
+          {% elif product.category == 2 %}
+          <p class=""text">Mobile</p>
+          {% elif product.category == 3 %}
+          <p class=""text">Clothes</p>
+          {% elif product.category == 4 %}
+          <p class=""text">Watch</p>
+          {% endif %}
+
+          <h4 class="card-title">{{product.pname}}</h4>
+          
+          <h6 class="card-title">{{product.description}}</h6>
+          <h5 class="card-title">{{product.price}} Rs </h5>
+          
+          <a href="/product_details/{{product.id}}/" class="btn btn-primary">see details</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+</div>
+{% endblock main %}

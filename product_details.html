@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+<style>
+
+
+</style>
+<div class="row">
+    <div class="col-md-8 mx-auto" style="background-color:beige">
+        <h3>product details</h3>
+        <div class="row">
+            
+
+            {% if error_msg %}
+                  <div class= "alert alert-danger">
+                    {{error_msg}}
+                  </div> 
+            {% endif %}
+                
+            {% for i in product %}
+            <div class="col-md-6">
+                <img src="{{i.pimage.url}}"  class="card-img-top mt-2" alt="product" style="height:400px">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    {% if i.category == 1 %}
+                    <p class=""text">Shoes</p>
+                    {% elif i.category == 2 %}
+                    <p class=""text">Mobile</p>
+                    {% elif i.category == 3 %}
+                    <p class=""text">Clothes</p>
+                    {% elif i.category == 4 %}
+                    <p class=""text">Watch</p>
+                    {% endif %}
+                  
+          
+                    <h4 class="card-title">{{i.pname}}</h4>
+                    <br>
+                    
+                    <h6 class="card-title">{{i.description}}</h6>
+                    <br>
+                    <h5 class="card-title">{{i.price}} Rs</h5><br>
+                    <a href="/addtocart/{{i.id}}" class="anchor"><button class="btn btn-danger m-3" > Add to Cart</button></a> 
+                    
+                    
+                    <a href="/mycart" class="anchor"><button class="btn btn-danger m-3" > View Cart</button></a>
+                    <a href="/" class="anchor"><button class="btn btn-danger m-3" > Shop More</button></a>
+                    {% if success %}
+                    <div class= "alert alert-success">
+                      {{success}}
+                    </div> 
+              {% endif %}
+
+
+                
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock main %}

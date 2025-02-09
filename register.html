@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block main %}
+<div class="row">
+
+    <div class="col-md-4 mt-4 mx-auto shadow-lg p-3 mb-5 bg-body-sbtl rounded" style="border: 1px solid red;">
+
+        <h2 style="text-align: center; " > Register Here</h2>
+    
+
+        <form method="POST" >
+            {% csrf_token %}
+
+            {% if error_msg  %}
+                <div class="alert alert-danger">
+                    {{error_msg}}
+
+                </div>
+            {% endif %}
+
+
+           
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" name="uname" placeholder="Enter Username" >
+             
+            </div>
+
+            <div class="mb-3">
+                <label for="username" class="form-label">Email</label>
+                <input type="email" class="form-control" name="uemail" placeholder="Enter Password" >
+               
+            </div>
+            <div class="mb-3">
+              <label for="Password" class="form-label">Password</label>
+              <input type="password" class="form-control" placeholder="Enter password" name="upass">
+            </div>
+            <div class="mb-3">
+                <label for="cPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Re-Enter password" name="ucpass">
+            </div>
+ 
+            <button type="submit" style="margin-left: 50px;" class="btn btn-danger">Register</button>
+            <a href="/login" > Already Register ? </a>
+          </form>
+    </div>
+</div>
+{% endblock main %}
